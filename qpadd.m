@@ -6,7 +6,15 @@ function qpadd(varargin)
     elseif isempty(varargin)
         % add path via command line
         pathName = input('enter a name for the path: ','s');
-        disp(pathName)
+        
+        qpdb = qpf_dbread;
+        
+        if qpf_searchName(qpdb, pathName) == 0
+            qpf_dbappend(pathName, pwd);
+            disp('new path successfully added.')
+        else
+            disp(['there is already a path named as ', pathName]);
+        end
     else
         % something done wrong
         disp('too many input arguments');

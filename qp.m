@@ -1,17 +1,7 @@
 function qp(whereToGo)
 
-    fileID = fopen('qpdatabase.pdb');
-    qpdb = textscan(fileID, '%s %s', 'Delimiter', ',');
-    fclose(fileID);
-    
-    itemNum = length(qpdb{1,1});
-    for i=1:itemNum
-        isFound = strcmp(qpdb{1,1}{i}, whereToGo);
-        if isFound
-           desiredPath = qpdb{1,2}{i};
-           break;
-        end
-    end
+    qpdb = qpf_dbread();
+    [isFound, ~, desiredPath] = qpf_searchName(qpdb, whereToGo);
     
     if isFound
         cd(desiredPath);
