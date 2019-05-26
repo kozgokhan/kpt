@@ -6,7 +6,8 @@ function quickpath()
     funAreaWidth = 75; editAreaHeight = 80; itemMargin = 15; buttonHeight = 20;
     
     listHeigh = 180; listWidth = mainWindowWidth - 2*winMargin-funAreaWidth;
-    listItems = {'kaan','mehmet'};
+    qpdb = qpf_dbread();
+    listItems = qpdb{1,1}
     list = uicontrol('Style','listbox', 'Position',[winMargin,mainWindowHeight-winMargin-listHeigh, listWidth, listHeigh], 'String',listItems, 'FontSize',12);
     
     uicontrol('Style','pushbutton', 'String','Add', 'Position',[winMargin+itemMargin+listWidth,mainWindowHeight-winMargin-buttonHeight, funAreaWidth, 20]);
