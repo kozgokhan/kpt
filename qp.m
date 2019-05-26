@@ -5,7 +5,7 @@ function qp(command)
         fprintf('| %3s | %-20s | %-50s |\n','#', 'name', 'path');
         fprintf('+%81s+\n',repmat('-',1,81));
         for i=1:length(qpdb{1,1})
-            fprintf('| %3d | %-20s | %-50s |\n',i, qpdb{1,1}{i}, qpdb{1,2}{i});
+            fprintf('| %3d | <a href="matlab: cd %s">%s</a>%s | %-50s |\n',i, qpdb{1,2}{i},qpdb{1,1}{i},fillBlank(qpdb{1,1}{i},20), qpdb{1,2}{i});
         end
         fprintf('+%81s+\n',repmat('-',1,81));
     elseif strcmp(command, 'qpstats')
@@ -20,4 +20,8 @@ function qp(command)
             disp('there is no such path.');
         end
     end
+end
+
+function fb = fillBlank(text, textSpace)
+    fb = blanks(textSpace - length(text));
 end
