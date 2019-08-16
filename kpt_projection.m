@@ -1,4 +1,4 @@
-function projectile(x, y, projecting_time)
+function kpt_projection(x, y, projecting_time)
     
     project_x = x(end):mean(diff(x)):projecting_time;
     if project_x(end)~=projecting_time
