@@ -1,10 +1,15 @@
-% color_plot(x, y, condition, color)
+% kpt_color_plot(x, y, condition, color)
+% ------------------------------------------------------------
 % Colors the background according to the given condition.
 % Condition must be built with the x and y arguments only.
-% example 1: color_plot(x, y, y>0.7, 'm')
-% example 2: color_plot(x, y, y>=0 & y<=0.7, [0.5 0.5 0.5])
+% ------------------------------------------------------------
+% Example: 
+% kpt_color_plot(x, y, y>0.7, 'm')
+% kpt_color_plot(x, y, y>=0 & y<=0.7, [0.5 0.5 0.5])
+% ------------------------------------------------------------
+% Kaan Özgökhan, 2019
 
-function color_plot(x, y, condition, color)
+function kpt_color_plot(x, y, condition, color)
     y_min = min(y); h = max(y)-min(y);
 
     color_x = ones(size(x))*119;
