@@ -87,7 +87,7 @@ function script_ReorderSubsysSupported()
                 if revRepAcv
                     ValueNew = strrep(ValueNew_ini,strGearRep_rev,strGear_rev);
                 end
-                isrev = strcmp(ValueNew_ini, ValueNew)<1
+                isrev = strcmp(ValueNew_ini, ValueNew)<1;
                 if ~(i==2 && isrev)
                     ValueNew = strrep(ValueNew, strGearRep, strGear);
                 end
@@ -300,4 +300,5 @@ function script_ReorderSubsysSupported()
             add_line(gcs,[pos; posRight])
         end 
     end
+disp("Reproduction is completed.")    
 end  % of function
