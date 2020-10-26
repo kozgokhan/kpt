@@ -41,8 +41,8 @@ function script_ReorderSubsysSupported()
     strGearRep_rev = '99';
     revRepAcv = 1;
     nameRepAcv = 1;
-    strNameRep = 'TH_NTgtForExitSpdPha1';
-    strNameRep_new = 'TH_NTgtForExitCnclSpdPha1';
+    strNameRep = 'TH_ValEngNGrdtTgtAtPha1';
+    strNameRep_new = 'TH_ValEngNGrdtCnclSpdTgtAtPha1';
     
     for i = 1:length(strGearNew)
         try
@@ -68,7 +68,7 @@ function script_ReorderSubsysSupported()
                 if ~(i==2 && isrev)
                     NameNew = strrep(NameNew, strGearRep, strGear);
                 end
-                if nameRepAcv && vecNameRep{i} && isrev
+                if nameRepAcv && vecNameRep{i}
                     NameNew = strrep(NameNew, strNameRep, strNameRep_new);
                     NameNew = strrep(NameNew, strGear_rev, strGear);
                 end
@@ -82,7 +82,7 @@ function script_ReorderSubsysSupported()
                 if ~(i==2 && isrev)
                     TagNew = strrep(TagNew,strGearRep,strGear);
                 end
-                if nameRepAcv && vecNameRep{i} && isrev
+                if nameRepAcv && vecNameRep{i}
                     TagNew = strrep(TagNew,strNameRep,strNameRep_new);
                     TagNew = strrep(TagNew, strGear_rev, strGear);
                 end
@@ -96,7 +96,7 @@ function script_ReorderSubsysSupported()
                 if ~(i==2 && isrev)
                     ValueNew = strrep(ValueNew, strGearRep, strGear);
                 end
-                if nameRepAcv && vecNameRep{i} && isrev
+                if nameRepAcv && vecNameRep{i}
                     ValueNew = strrep(ValueNew, strNameRep, strNameRep_new);
                     ValueNew = strrep(ValueNew, strGear_rev, strGear);
                 end
@@ -112,7 +112,7 @@ function script_ReorderSubsysSupported()
                 if ~(i==2 && isrev)
                     TableNew = strrep(TableNew,strGearRep,strGear);
                 end
-                if nameRepAcv && vecNameRep{i} && isrev
+                if nameRepAcv && vecNameRep{i}
                     TableNew = strrep(TableNew, strNameRep, strNameRep_new);
                     TableNew = strrep(TableNew, strGear_rev, strGear);
                 end
@@ -127,7 +127,7 @@ function script_ReorderSubsysSupported()
                     if ~(i==2 && isrev)
                         AxisNew = strrep(AxisNew,strGearRep,strGear);
                     end
-                    if nameRepAcv && vecNameRep{i} && isrev
+                    if nameRepAcv && vecNameRep{i}
                         AxisNew = strrep(AxisNew, strNameRep, strNameRep_new);
                         AxisNew = strrep(AxisNew, strGear_rev, strGear);
                     end
@@ -148,7 +148,7 @@ function script_ReorderSubsysSupported()
                 if ~(i==2 && isrev)
                     TableVarNew = strrep(TableVarNew,strGearRep,strGear);
                 end
-                if nameRepAcv && vecNameRep{i} && isrev
+                if nameRepAcv && vecNameRep{i}
                     TableVarNew = strrep(TableVarNew,strNameRep,strNameRep_new);
                     TableVarNew = strrep(TableVarNew, strGear_rev, strGear);
                 end
@@ -163,7 +163,7 @@ function script_ReorderSubsysSupported()
                     if ~(i==2 && isrev)
                         AxisVarNew = strrep(AxisVarNew,strGearRep,strGearNew);
                     end
-                    if nameRepAcv && vecNameRep{i} && isrev
+                    if nameRepAcv && vecNameRep{i}
                         AxisVarNew = strrep(AxisVarNew,strNameRep,strNameRep_new);
                         AxisVarNew = strrep(AxisVarNew, strGear_rev, strGear);
                     end
@@ -177,7 +177,7 @@ function script_ReorderSubsysSupported()
                     if ~(i==2 && isrev)
                         Axis1VarNew = strrep(Axis1VarNew,strGearRep,strGear);
                     end
-                    if nameRepAcv && vecNameRep{i} && isrev
+                    if nameRepAcv && vecNameRep{i}
                         Axis1VarNew = strrep(Axis1VarNew,strNameRep,strNameRep_new);
                         Axis1VarNew = strrep(Axis1VarNew, strGear_rev, strGear);
                     end
@@ -191,7 +191,7 @@ function script_ReorderSubsysSupported()
                     if ~(i==2 && isrev)
                         Axis2VarNew = strrep(Axis2VarNew,strGearRep,strGear);
                     end
-                    if nameRepAcv && vecNameRep{i} && isrev
+                    if nameRepAcv && vecNameRep{i}
                         Axis2VarNew = strrep(Axis2VarNew,strNameRep,strNameRep_new);
                         Axis2VarNew = strrep(Axis2VarNew, strGear_rev, strGear);
                     end
@@ -205,7 +205,7 @@ function script_ReorderSubsysSupported()
                 if ~(i==2 && isrev)
                         VarNew = strrep(VarNew, strGearRep, strGear);
                 end
-                if nameRepAcv && vecNameRep{i} && isrev
+                if nameRepAcv && vecNameRep{i}
                 	VarNew = strrep(VarNew, strNameRep, strNameRep_new);
                 	VarNew = strrep(VarNew, strGear_rev, strGear);
                 end
