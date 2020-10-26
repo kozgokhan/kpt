@@ -193,19 +193,16 @@ function script_ReorderSubsysSupported()
                     tl_set(TlBlocks(k),'col.variable',Axis2VarNew);
                 end
             elseif ~strcmp(Variable,'')
-                disp('----------------------------------------------------------')
-                disp(Variable)
-                disp('----------------------------------------------------------')
                 if revRepAcv
-                    VarNew = strrep(Variable, strGearRep_rev, strGear_rev)
+                    VarNew = strrep(Variable, strGearRep_rev, strGear_rev);
                 end
-                isrev = (strcmp(Variable, VarNew)<1)
+                isrev = (strcmp(Variable, VarNew)<1);
                 if ~(i==2 && isrev)
-                        VarNew = strrep(VarNew, strGearRep, strGear)
+                        VarNew = strrep(VarNew, strGearRep, strGear);
                 end
                 if nameRepAcv && vecNameRep{i} && isrev
-                	VarNew = strrep(VarNew, strNameRep, strNameRep_new)
-                	VarNew = strrep(VarNew, strGear_rev, strGear)
+                	VarNew = strrep(VarNew, strNameRep, strNameRep_new);
+                	VarNew = strrep(VarNew, strGear_rev, strGear);
                 end
                 tl_set(TlBlocks(k),'Output.variable',VarNew);
             end
