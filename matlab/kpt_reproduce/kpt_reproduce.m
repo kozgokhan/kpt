@@ -41,7 +41,6 @@ function script_ReorderSubsysSupported()
     strNameRep = 'TH_NTgtForExitSpdPha1';
     strNameRep_new = 'TH_NTgtForExitCnclSpdPha1';
     
-    
     for i = 1:length(strGearNew)
         try
         strGearSub = sprintf('Gear%sto%s',strGearNew{i}(1),strGearNew{i}(2));
@@ -84,17 +83,17 @@ function script_ReorderSubsysSupported()
                 end
                 set_param(Blocks(k),'GotoTag',TagNew);
             elseif strcmp(BlockType,'Constant')
-                ValueNew_ini = get_param(Blocks(k),'Value')
+                ValueNew_ini = get_param(Blocks(k),'Value');
                 if revRepAcv
-                    ValueNew = strrep(ValueNew_ini,strGearRep_rev,strGear_rev)
+                    ValueNew = strrep(ValueNew_ini,strGearRep_rev,strGear_rev);
                 end
                 isrev = strcmp(ValueNew_ini, ValueNew)<1
                 if ~(i==2 && isrev)
-                    ValueNew = strrep(ValueNew, strGearRep, strGear)
+                    ValueNew = strrep(ValueNew, strGearRep, strGear);
                 end
                 if nameRepAcv && vecNameRep{i} && isrev
-                    ValueNew = strrep(ValueNew, strNameRep, strNameRep_new)
-                    ValueNew = strrep(ValueNew, strGear_rev, strGear)
+                    ValueNew = strrep(ValueNew, strNameRep, strNameRep_new);
+                    ValueNew = strrep(ValueNew, strGear_rev, strGear);
                 end
                 set_param(Blocks(k),'Value',ValueNew);
             elseif strcmp(BlockType,'Lookup')||strcmp(BlockType,'Lookup2D')||...
@@ -138,7 +137,7 @@ function script_ReorderSubsysSupported()
                      ||strcmp(BlockType,'Lookup_n-D')
                 TableVarNew_ini = tl_get(TlBlocks(k),'table.variable');
                 if revRepAcv
-                    TableVarNew = strrep(TableVarNew_ini,strGearRep_rev,strGear_rev);
+                    TableVarNew = strrep(TableVarNew_ini, strGearRep_rev, strGear_rev);
                 end
                 isrev = (strcmp(TableVarNew_ini, TableVarNew)<1);
                 if ~(i==2 && isrev)
@@ -194,14 +193,19 @@ function script_ReorderSubsysSupported()
                     tl_set(TlBlocks(k),'col.variable',Axis2VarNew);
                 end
             elseif ~strcmp(Variable,'')
+                disp('----------------------------------------------------------')
+                disp(Variable)
+                disp('----------------------------------------------------------')
                 if revRepAcv
-                    VarNew = strrep(VarNew,strGearRep_rev,strGear_rev);
+                    VarNew = strrep(Variable, strGearRep_rev, strGear_rev)
                 end
-                %isrev = (strcmp(Axis2VarNew_ini, Axis2VarNew)<1);
-                VarNew = strrep(Variable,strGearRep,strGear);
+                isrev = (strcmp(Variable, VarNew)<1)
+                if ~(i==2 && isrev)
+                        VarNew = strrep(VarNew, strGearRep, strGear)
+                end
                 if nameRepAcv && vecNameRep{i} && isrev
-                    VarNew = strrep(VarNew,strNameRep,strNameRep_new);
-                    VarNew = strrep(VarNew, strGear_rev, strGear);
+                	VarNew = strrep(VarNew, strNameRep, strNameRep_new)
+                	VarNew = strrep(VarNew, strGear_rev, strGear)
                 end
                 tl_set(TlBlocks(k),'Output.variable',VarNew);
             end
