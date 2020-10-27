@@ -41,8 +41,8 @@ function script_ReorderSubsysSupported()
     strGearRep_rev = '99';
     revRepAcv = 1;
     nameRepAcv = 1;
-    strNameRep = 'TH_ValEngNGrdtTgtAtPha1';
-    strNameRep_new = 'TH_ValEngNGrdtCnclSpdTgtAtPha1';
+    strNameRep = {'TH_NTgtForExitSpdPha1'};
+    strNameRep_new = {'TH_NTgtForExitCnclSpdPha1'};
     
     for i = 1:length(strGearNew)
         try
@@ -62,43 +62,43 @@ function script_ReorderSubsysSupported()
                     strcmp(BlockType,'Outport')
                 NameNew_ini = get_param(Blocks(k),'Name');
                 if revRepAcv
-                    NameNew = strrep(NameNew_ini, strGearRep_rev, strGear_rev);
+                    NameNew = replace(NameNew_ini, strGearRep_rev, strGear_rev);
                 end
                 isrev = strcmp(NameNew_ini, NameNew)<1;
                 if ~(i==2 && isrev)
-                    NameNew = strrep(NameNew, strGearRep, strGear);
+                    NameNew = replace(NameNew, strGearRep, strGear);
                 end
                 if nameRepAcv && vecNameRep{i}
-                    NameNew = strrep(NameNew, strNameRep, strNameRep_new);
-                    NameNew = strrep(NameNew, strGear_rev, strGear);
+                    NameNew = replace(NameNew, strNameRep, strNameRep_new);
+                    NameNew = replace(NameNew, strGear_rev, strGear);
                 end
                 set_param(Blocks(k), 'Name', NameNew);
             elseif strcmp(BlockType,'Goto')||strcmp(BlockType,'From')
                 TagNew_ini = get_param(Blocks(k),'GotoTag');
                 if revRepAcv
-                    TagNew = strrep(TagNew_ini, strGearRep_rev, strGear_rev);
+                    TagNew = replace(TagNew_ini, strGearRep_rev, strGear_rev);
                 end
                 isrev = strcmp(TagNew_ini, TagNew)<1;
                 if ~(i==2 && isrev)
-                    TagNew = strrep(TagNew,strGearRep,strGear);
+                    TagNew = replace(TagNew,strGearRep,strGear);
                 end
                 if nameRepAcv && vecNameRep{i}
-                    TagNew = strrep(TagNew,strNameRep,strNameRep_new);
-                    TagNew = strrep(TagNew, strGear_rev, strGear);
+                    TagNew = replace(TagNew,strNameRep,strNameRep_new);
+                    TagNew = replace(TagNew, strGear_rev, strGear);
                 end
                 set_param(Blocks(k),'GotoTag',TagNew);
             elseif strcmp(BlockType,'Constant')
                 ValueNew_ini = get_param(Blocks(k),'Value');
                 if revRepAcv
-                    ValueNew = strrep(ValueNew_ini,strGearRep_rev,strGear_rev);
+                    ValueNew = replace(ValueNew_ini,strGearRep_rev,strGear_rev);
                 end
                 isrev = strcmp(ValueNew_ini, ValueNew)<1;
                 if ~(i==2 && isrev)
-                    ValueNew = strrep(ValueNew, strGearRep, strGear);
+                    ValueNew = replace(ValueNew, strGearRep, strGear);
                 end
                 if nameRepAcv && vecNameRep{i}
-                    ValueNew = strrep(ValueNew, strNameRep, strNameRep_new);
-                    ValueNew = strrep(ValueNew, strGear_rev, strGear);
+                    ValueNew = replace(ValueNew, strNameRep, strNameRep_new);
+                    ValueNew = replace(ValueNew, strGear_rev, strGear);
                 end
                 set_param(Blocks(k),'Value',ValueNew);
             elseif strcmp(BlockType,'Lookup')||strcmp(BlockType,'Lookup2D')||...
@@ -106,30 +106,30 @@ function script_ReorderSubsysSupported()
                     ||strcmp(BlockType,'Interpolation_n-D')
                 TableNew_ini = get_param(Blocks(k),'Table');
                 if revRepAcv
-                    TableNew = strrep(TableNew_ini, strGearRep_rev, strGear_rev);
+                    TableNew = replace(TableNew_ini, strGearRep_rev, strGear_rev);
                 end
                 isrev = strcmp(TableNew_ini, TableNew)<1;
                 if ~(i==2 && isrev)
-                    TableNew = strrep(TableNew,strGearRep,strGear);
+                    TableNew = replace(TableNew,strGearRep,strGear);
                 end
                 if nameRepAcv && vecNameRep{i}
-                    TableNew = strrep(TableNew, strNameRep, strNameRep_new);
-                    TableNew = strrep(TableNew, strGear_rev, strGear);
+                    TableNew = replace(TableNew, strNameRep, strNameRep_new);
+                    TableNew = replace(TableNew, strGear_rev, strGear);
                 end
                 set_param(Blocks(k),'Table',TableNew);
                 Dim = str2num(get_param(Blocks(k),'NumberOfTableDimensions'));
                 for j=1:Dim
                     AxisNew_ini = get_param(Blocks(k),sprintf('BreakpointsForDimension%d',j));
                     if revRepAcv
-                        AxisNew = strrep(AxisNew_ini,strGearRep_rev,strGear_rev);
+                        AxisNew = replace(AxisNew_ini,strGearRep_rev,strGear_rev);
                     end
                     isrev = (strcmp(AxisNew_ini, AxisNew)<1);
                     if ~(i==2 && isrev)
-                        AxisNew = strrep(AxisNew,strGearRep,strGear);
+                        AxisNew = replace(AxisNew,strGearRep,strGear);
                     end
                     if nameRepAcv && vecNameRep{i}
-                        AxisNew = strrep(AxisNew, strNameRep, strNameRep_new);
-                        AxisNew = strrep(AxisNew, strGear_rev, strGear);
+                        AxisNew = replace(AxisNew, strNameRep, strNameRep_new);
+                        AxisNew = replace(AxisNew, strGear_rev, strGear);
                     end
                     set_param(Blocks(k),sprintf('BreakpointsForDimension%d',j),AxisNew);
                 end
@@ -142,72 +142,72 @@ function script_ReorderSubsysSupported()
                      ||strcmp(BlockType,'Lookup_n-D')
                 TableVarNew_ini = tl_get(TlBlocks(k),'table.variable');
                 if revRepAcv
-                    TableVarNew = strrep(TableVarNew_ini, strGearRep_rev, strGear_rev);
+                    TableVarNew = replace(TableVarNew_ini, strGearRep_rev, strGear_rev);
                 end
                 isrev = (strcmp(TableVarNew_ini, TableVarNew)<1);
                 if ~(i==2 && isrev)
-                    TableVarNew = strrep(TableVarNew,strGearRep,strGear);
+                    TableVarNew = replace(TableVarNew,strGearRep,strGear);
                 end
                 if nameRepAcv && vecNameRep{i}
-                    TableVarNew = strrep(TableVarNew,strNameRep,strNameRep_new);
-                    TableVarNew = strrep(TableVarNew, strGear_rev, strGear);
+                    TableVarNew = replace(TableVarNew,strNameRep,strNameRep_new);
+                    TableVarNew = replace(TableVarNew, strGear_rev, strGear);
                 end
                 tl_set(TlBlocks(k),'table.variable',TableVarNew);
                 Dim = str2num(get_param(TlBlocks(k),'NumberOfTableDimensions'));
                 if Dim==1
                     AxisVarNew_ini = tl_get(TlBlocks(k),'input.variable');
                     if revRepAcv
-                        AxisVarNew = strrep(AxisVarNew_ini,strGearRep_rev,strGearNew_rev);
+                        AxisVarNew = replace(AxisVarNew_ini,strGearRep_rev,strGearNew_rev);
                     end
                     isrev = (strcmp(AxisVarNew_ini, AxisVarNew)<1);
                     if ~(i==2 && isrev)
-                        AxisVarNew = strrep(AxisVarNew,strGearRep,strGearNew);
+                        AxisVarNew = replace(AxisVarNew,strGearRep,strGearNew);
                     end
                     if nameRepAcv && vecNameRep{i}
-                        AxisVarNew = strrep(AxisVarNew,strNameRep,strNameRep_new);
-                        AxisVarNew = strrep(AxisVarNew, strGear_rev, strGear);
+                        AxisVarNew = replace(AxisVarNew,strNameRep,strNameRep_new);
+                        AxisVarNew = replace(AxisVarNew, strGear_rev, strGear);
                     end
                     tl_set(TlBlocks(k),'input.variable',AxisVarNew);
                 elseif Dim==2
                     Axis1VarNew_ini = tl_get(TlBlocks(k),'row.variable');
                     if revRepAcv
-                        Axis1VarNew = strrep(Axis1VarNew_ini,strGearRep_rev,strGear_rev);
+                        Axis1VarNew = replace(Axis1VarNew_ini,strGearRep_rev,strGear_rev);
                     end
                     isrev = (strcmp(Axis1VarNew_ini, Axis1VarNew)<1);
                     if ~(i==2 && isrev)
-                        Axis1VarNew = strrep(Axis1VarNew,strGearRep,strGear);
+                        Axis1VarNew = replace(Axis1VarNew,strGearRep,strGear);
                     end
                     if nameRepAcv && vecNameRep{i}
-                        Axis1VarNew = strrep(Axis1VarNew,strNameRep,strNameRep_new);
-                        Axis1VarNew = strrep(Axis1VarNew, strGear_rev, strGear);
+                        Axis1VarNew = replace(Axis1VarNew,strNameRep,strNameRep_new);
+                        Axis1VarNew = replace(Axis1VarNew, strGear_rev, strGear);
                     end
                     tl_set(TlBlocks(k),'row.variable',Axis1VarNew);
 
                     Axis2VarNew_ini = tl_get(TlBlocks(k),'col.variable');
                     if revRepAcv
-                        Axis2VarNew = strrep(Axis2VarNew_ini,strGearRep_rev,strGear_rev);
+                        Axis2VarNew = replace(Axis2VarNew_ini,strGearRep_rev,strGear_rev);
                     end
                     isrev = (strcmp(Axis2VarNew_ini, Axis2VarNew)<1);
                     if ~(i==2 && isrev)
-                        Axis2VarNew = strrep(Axis2VarNew,strGearRep,strGear);
+                        Axis2VarNew = replace(Axis2VarNew,strGearRep,strGear);
                     end
                     if nameRepAcv && vecNameRep{i}
-                        Axis2VarNew = strrep(Axis2VarNew,strNameRep,strNameRep_new);
-                        Axis2VarNew = strrep(Axis2VarNew, strGear_rev, strGear);
+                        Axis2VarNew = replace(Axis2VarNew,strNameRep,strNameRep_new);
+                        Axis2VarNew = replace(Axis2VarNew, strGear_rev, strGear);
                     end
                     tl_set(TlBlocks(k),'col.variable',Axis2VarNew);
                 end
             elseif ~strcmp(Variable,'')
                 if revRepAcv
-                    VarNew = strrep(Variable, strGearRep_rev, strGear_rev);
+                    VarNew = replace(Variable, strGearRep_rev, strGear_rev);
                 end
                 isrev = (strcmp(Variable, VarNew)<1);
                 if ~(i==2 && isrev)
-                        VarNew = strrep(VarNew, strGearRep, strGear);
+                        VarNew = replace(VarNew, strGearRep, strGear);
                 end
                 if nameRepAcv && vecNameRep{i}
-                	VarNew = strrep(VarNew, strNameRep, strNameRep_new);
-                	VarNew = strrep(VarNew, strGear_rev, strGear);
+                	VarNew = replace(VarNew, strNameRep, strNameRep_new);
+                	VarNew = replace(VarNew, strGear_rev, strGear);
                 end
                 tl_set(TlBlocks(k),'Output.variable',VarNew);
             end
